@@ -39,4 +39,9 @@
     <Folder Include="Models\Authentication\Login\" />
     <Folder Include="Models\Authentication\SignUp\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\User.Management.Service\User.Management.Service.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
