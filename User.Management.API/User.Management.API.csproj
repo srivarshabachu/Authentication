@@ -29,14 +29,9 @@
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Models\Authentication\" />
-    <None Remove="Models\Authentication\Login\" />
-    <None Remove="Models\Authentication\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Models\Authentication\" />
-    <Folder Include="Models\Authentication\Login\" />
-    <Folder Include="Models\Authentication\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\User.Management.Service\User.Management.Service.csproj">

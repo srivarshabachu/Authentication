@@ -8,25 +8,55 @@ using User.Management.Service.Models;
 using User.Management.Service.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using User.Management.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin", builder =>
+    {
+        builder
+            .WithOrigins("http://localhost:3000") // Update with your Angular app's URL
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 //Add Config for Required Email
-builder.Services.Configure<IdentityOptions>(
-    opts => opts.SignIn.RequireConfirmedEmail = true
-    );
+//builder.Services.Configure<IdentityOptions>(
+//   opts => opts.SignIn.RequireConfirmedEmail = true
+//    );
 
 // For Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>()
+//.AddDefaultTokenProviders();
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    // Other identity options
+    options.Tokens.ProviderMap["Email"] = new TokenProviderDescriptor(typeof(EmailTokenProvider<ApplicationUser>));
+}).AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+
+
+
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromMinutes(5));
+
 //Add Config for Required Email
 builder.Services.Configure<IdentityOptions>(
-    opts => opts.SignIn.RequireConfirmedEmail = true
-    );
-builder.Services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromHours(1));
+   opts => opts.SignIn.RequireConfirmedEmail = true
+);
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -36,13 +66,16 @@ builder.Services.AddAuthentication(options =>
     {
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = configuration["JWT:ValidAudience"],
-        ValidIssuer = configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateLifetime = true,
+            ValidateAudience = true,
+            ValidAudience = configuration["JWT:ValidAudience"],
+            ValidateIssuerSigningKey = true,
+            ClockSkew = TimeSpan.Zero,
+            ValidIssuer = configuration["JWT:ValidIssuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
     };
 });
 
@@ -52,7 +85,7 @@ var emailConfig = configuration.GetSection("EmailConfiguration").Get<EmailConfig
 builder.Services.AddSingleton(emailConfig);
 
 builder.Services.AddScoped<IEmailService, EmailService>();
-
+builder.Services.AddScoped<IUserManagement, UserManagement>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -86,10 +119,11 @@ builder.Services.AddSwaggerGen(option =>
 });
 var app = builder.Build();
 //
-app.UseCors(options =>
-{
-    options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-});
+//app.UseCors(options =>
+//{
+ //   options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+//});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -98,6 +132,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowOrigin");
 
 app.UseAuthentication();
 

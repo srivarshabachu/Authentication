@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/srivarshabachu/Projects/User.Management.API/User.Management.Service/User.Management.Service.csproj": {}
+    "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Service\\User.Management.Service.csproj": {}
   },
   "projects": {
-    "/Users/srivarshabachu/Projects/User.Management.API/User.Management.Service/User.Management.Service.csproj": {
+    "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\User.Management.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/srivarshabachu/Projects/User.Management.API/User.Management.Service/User.Management.Service.csproj",
-        "projectName": "User.Management.Service",
-        "projectPath": "/Users/srivarshabachu/Projects/User.Management.API/User.Management.Service/User.Management.Service.csproj",
-        "packagesPath": "/Users/srivarshabachu/.nuget/packages/",
-        "outputPath": "/Users/srivarshabachu/Projects/User.Management.API/User.Management.Service/obj/",
+        "projectUniqueName": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\User.Management.Data.csproj",
+        "projectName": "User.Management.Data",
+        "projectPath": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\User.Management.Data.csproj",
+        "packagesPath": "C:\\Users\\91939\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/srivarshabachu/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\91939\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +40,111 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Service\\User.Management.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Service\\User.Management.Service.csproj",
+        "projectName": "User.Management.Service",
+        "projectPath": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Service\\User.Management.Service.csproj",
+        "packagesPath": "C:\\Users\\91939\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\91939\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\User.Management.Data.csproj": {
+                "projectPath": "C:\\Users\\91939\\Source\\Repos\\Authentication\\User.Management.Data\\User.Management.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
             "NETCore.MailKit": {
               "target": "Package",
               "version": "[2.1.0, )"
@@ -60,7 +166,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
