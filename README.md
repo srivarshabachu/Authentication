@@ -62,17 +62,17 @@ Here are some examples of how to use the application:
 ### Register a new user
 Send a POST request to `/api/auth/Register` with the following JSON body:
 json
-<!--{
+{
   "username": "string",
   "email": "user@example.com",
   "password": "string",
   "roles": [
     "string"
   ]
-}-->
+}
 ### Login to existing user
 Send a POST request to `/api/auth/Login` with the following JSON body:
-<!--{
+{
   "userName": "string",
   "password": "string"
-}-->
+}
